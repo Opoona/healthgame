@@ -16,16 +16,15 @@ public class Preference extends PreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getFragmentManager().beginTransaction().replace(android.R.id.content, new Preflg()).commit();
-		
+		//preferenceをとってくる処理
 		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		String h = sharedPref.getString("user_height", "0");
 		String w = sharedPref.getString("user_weight", "0");
 		int height = Integer.parseInt(h);
 		int weight = Integer.parseInt(w);
 		String name = sharedPref.getString("user_name", "unknown");
-		MyData myData = new MyData(height, weight, name);
 		
 	}
 	

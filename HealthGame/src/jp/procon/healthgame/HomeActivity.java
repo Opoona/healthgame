@@ -2,13 +2,16 @@ package jp.procon.healthgame;
 
 
 import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
@@ -27,16 +30,26 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
 	private SensorManager smanager;
 	private Sensor accelerometer;
 	private Bundle exbdl = new Bundle();
+	private MyData myData;
 
+	
 	private int step = -1;
 	FragmentManager fm = getSupportFragmentManager();
-	FragmentTransaction t = fm.beginTransaction();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home);
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		String name = sharedPref.getString("user_name", "unknown");
+		String h = sharedPref.getString("user_height", "0");
+		String w = sharedPref.getString("user_weight", "0");
+		int height = Integer.parseInt(h);
+		int weight = Integer.parseInt(w);
+		String la = sharedPref.getString("list_preference", "-1");
+		int lifeArmor = Integer.parseInt(la);
+		myData = new MyData(height, weight, name, lifeArmor);
 		
 
 		//Tab生成
@@ -49,47 +62,15 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
         homebtn.setText("Home");
         homeTab.setIndicator(homebtn);
         host.addTab(homeTab, HomeFragment.class, null);
-        
-        /*//SleepTab
-        TabSpec sleepTab = host.newTabSpec("tab1");
-        Button sleepbtn = new Button(this);
-        sleepbtn.setText("Sleep");
-        //button1.setBackgroundResource(R.drawable.tab_left);
-        sleepTab.setIndicator(sleepbtn);
-        Bundle sleepbdl = new Bundle();
-        sleepbdl.putString("name", "Tab1");
-        host.addTab(sleepTab, SleepFragment.class, sleepbdl);
-        */
-        
-        /*//FoodTab
-        TabSpec foodTab = host.newTabSpec("tab2");
-        Button foodbtn = new Button(this);
-        foodbtn.setText("Lunch");
-        //button2.setBackgroundResource(R.drawable.tab_center);
-        foodTab.setIndicator(foodbtn);
-        Bundle foodbdl = new Bundle();
-        foodbdl.putString("name", "Tab2");
-        host.addTab(foodTab, FoodFragment.class, foodbdl);
-        */
-        
         //ExerciseTab
         TabSpec exTab = host.newTabSpec("ex");
         Button exbtn = new Button(this);
         exbtn.setText("Exercise");
-        //button3.setBackgroundResource(R.drawable.tab_right);
         exTab.setIndicator(exbtn);
-        Log.d("step", "step == -1");
+        exbdl.putInt("HEIGHT", myData.getWeight());
+        exbdl.putFloat("STEP_WIDTH", myData.getStepwidth());
         exbdl.putInt("STEP", step);
         host.addTab(exTab, ExerciseFragment.class, exbdl);
-		
-        //OptionTab
-        /*TabSpec opTab = host.newTabSpec("option");
-        Button opbtn = new Button(this);
-        opbtn.setText("Option");
-        opTab.setContent(new Intent(this, OptionFragment.class));
-        opTab.setIndicator(opbtn);
-        host.addTab(opTab, OptionFragment.class, null);
-        */
         //オプションタブ
         Button optionbtn = (Button) findViewById(R.id.option);
         optionbtn.setText("Option");
@@ -144,15 +125,6 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
 		// TODO 自動生成されたメソッド・スタブ
 		acceleration.setNxyz(event.values[0], event.values[1], event.values[2]);
 		step = stepcount.stepCnt(acceleration);
-		FragmentManager fm = getSupportFragmentManager();
-		FragmentTransaction t = fm.beginTransaction();
-		ExerciseFragment fragment = new ExerciseFragment();
-		//Bundle bundle = new Bundle();
 		exbdl.putInt("STEP", step);
-		// フラグメントに渡す値をセット
-		fragment.setArguments(exbdl);
-		t.add(fragment, null);
-		t.commit();
-		
 	}
 }

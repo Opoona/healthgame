@@ -1,9 +1,9 @@
 package jp.procon.healthgame;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +14,9 @@ public class ExerciseFragment extends Fragment {
 	//private Acceleration acceleration = new Acceleration();
 	//private SensorManager sensorManager;
 	public int step = 0;
-	public String stepstring = null;
-
+	
+	
+	
 	public ExerciseFragment() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
@@ -23,28 +24,29 @@ public class ExerciseFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//TextView stepText = new TextView(getActivity());
-		//Integer step = getArguments().getInt("STEP");
-        //String stepstring = step.toString();
-        //stepText.setText(stepstring);
-		//Log.d("aaaaaaa", stepstring);
-		
 	}
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        
         LinearLayout exlayout = (LinearLayout) inflater.inflate(R.layout.exercise, container, false);
-
-        TextView stepText = new TextView(getActivity());
+        TextView stepText = (TextView) exlayout.findViewById(R.id.todaystep);
+        TextView burnText = (TextView) exlayout.findViewById(R.id.todaycal);
+        Float stepWidth = getArguments().getFloat("STEP_WIDTH");
+        Integer weight = getArguments().getInt("WEIGHT");
         Integer step = getArguments().getInt("STEP");
-        String stepstring = step.toString();
-        stepText.setText(stepstring);
-        //Log.d("aaaaaaa", stepstring);
-        exlayout.addView(stepText);
-        return exlayout;
+        Float burnCal = step * stepWidth * weight;
+        String stepString = step.toString();
+        String burnCalString = burnCal.toString();
+        stepText.setText(stepString);
+        burnText.setText(burnCalString);
         
+        return exlayout;
     }
+	
+	/*@Override
+	public void onPause() {
+		super.onPause();
+	}*/
 	
 	@Override
 	public void onResume() {
