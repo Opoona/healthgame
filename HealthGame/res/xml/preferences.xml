@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="名前と身長、体重の登録">
+            <EditTextPreference
+                android:key="user_name"
+                android:title="お名前"
+                android:summary="あなたのお名前を教えてください"
+                android:dialogTitle="お名前" />
+            <EditTextPreference
+                android:key="user_height"
+                android:title="身長"
+                android:summary="あなたの身長を教えてください"
+                android:dialogTitle="身長"
+                android:inputType="number"
+            />
+            <EditTextPreference
+                android:key="user_weight"
+                android:title="体重"
+                android:summary="あなたの体重を教えてください"
+                android:dialogTitle="体重"
+                android:inputType="number"
+            />
+        </PreferenceCategory>
+
+</PreferenceScreen>
