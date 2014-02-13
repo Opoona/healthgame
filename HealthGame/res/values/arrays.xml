@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entries_list_preference">
+        <item>おもに部屋の中で生活・作業している方</item>
+        <item>1日に2時間以上の歩行・立ち仕事がある方</item>
+        <item>1日に1時間程度の重労働がある方</item>
+        <item>1日に2時間程度は激しい運動や重労働している方</item>
+    </string-array>
+    <string-array name="entryvalues_list_preference">
+        <item>23</item>
+        <item>28</item>
+        <item>33</item>
+        <item>38</item>
+    </string-array>
+    
+</resources>

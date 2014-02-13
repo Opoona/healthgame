@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <PreferenceCategory android:title="名前と身長、体重の登録">
+    <PreferenceCategory android:title="ユーザー情報の登録">
             <EditTextPreference
                 android:key="user_name"
-                android:title="お名前"
-                android:summary="あなたのお名前を教えてください"
+                android:title="モンスターの名前"
+                android:summary="モンスターの名前を決めてください"
                 android:dialogTitle="お名前" />
             <EditTextPreference
                 android:key="user_height"
@@ -21,6 +21,13 @@
                 android:dialogTitle="体重"
                 android:inputType="number"
             />
-        </PreferenceCategory>
+            <ListPreference
+        		android:key="list_preference"
+        		android:title="生活強度の選択"
+        		android:summary="あなたの日常生活の運動量を教えてください"
+        		android:entries="@array/entries_list_preference"
+        		android:entryValues="@array/entryvalues_list_preference"
+        		android:dialogTitle="生活強度の選択" />
+        	</PreferenceCategory>
 
 </PreferenceScreen>
