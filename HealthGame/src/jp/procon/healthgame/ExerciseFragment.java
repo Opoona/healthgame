@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +33,11 @@ public class ExerciseFragment extends Fragment {
         Float stepWidth = getArguments().getFloat("STEP_WIDTH");
         Integer weight = getArguments().getInt("WEIGHT");
         Integer step = getArguments().getInt("STEP");
-        Float burnCal = step * stepWidth * weight;
+        Float burnCal = (step * stepWidth * weight)/10000;
         String stepString = step.toString();
         String burnCalString = burnCal.toString();
+        Log.d("step",stepString);
+        Log.d("burncal",burnCalString);
         stepText.setText(stepString);
         burnText.setText(burnCalString);
         

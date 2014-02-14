@@ -23,7 +23,7 @@ public class MyData {
 		
 		this.bestWeight = (height/100) * (height/100) * 22;
 		this.burnCal = weight * lifeArmor; 
-		this.setStepwidth(this.height * 0.45f);
+		this.setStepwidth(height * 0.45f);
 	}
 	
 	public int getHeight() {
@@ -48,11 +48,12 @@ public class MyData {
 	public String getName() {
 		return name;
 	}
-	
+
 	public float getStepwidth() {
 		return stepwidth;
 	}
+
 	public void setStepwidth(float stepwidth) {
-		this.stepwidth = stepwidth/100;
+		this.stepwidth = stepwidth;
 	}
 }

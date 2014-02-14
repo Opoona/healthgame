@@ -30,7 +30,7 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
 	private SensorManager smanager;
 	private Sensor accelerometer;
 	private Bundle exbdl = new Bundle();
-	private MyData myData;
+
 
 	
 	private int step = -1;
@@ -49,7 +49,9 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
 		int weight = Integer.parseInt(w);
 		String la = sharedPref.getString("list_preference", "-1");
 		int lifeArmor = Integer.parseInt(la);
-		myData = new MyData(height, weight, name, lifeArmor);
+		MyData myData = new MyData(height, weight, name, lifeArmor);
+		int weiGht = myData.getWeight();
+		Float stepwidth = myData.getStepwidth();
 		
 
 		//Tab生成
@@ -69,8 +71,8 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
         Button exbtn = new Button(this);
         exbtn.setText("Exercise");
         exTab.setIndicator(exbtn);
-        exbdl.putInt("HEIGHT", myData.getWeight());
-        exbdl.putFloat("STEP_WIDTH", myData.getStepwidth());
+        exbdl.putInt("WEIGHT", weiGht);
+        exbdl.putFloat("STEP_WIDTH", stepwidth);
         exbdl.putInt("STEP", step);
         host.addTab(exTab, ExerciseFragment.class, exbdl);
         //オプションタブ
