@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ExerciseFragment extends Fragment {
-	//private Acceleration acceleration = new Acceleration();
-	//private SensorManager sensorManager;
 	public int step = 0;
 	
 	

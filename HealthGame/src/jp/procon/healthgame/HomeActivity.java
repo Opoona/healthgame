@@ -61,7 +61,9 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
         Button homebtn = new Button(this);
         homebtn.setText("Home");
         homeTab.setIndicator(homebtn);
-        host.addTab(homeTab, HomeFragment.class, null);
+        Bundle homebdl = new Bundle();
+        homebdl.putString("NAME", name);
+        host.addTab(homeTab, HomeFragment.class, homebdl);
         //ExerciseTab
         TabSpec exTab = host.newTabSpec("ex");
         Button exbtn = new Button(this);
