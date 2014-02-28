@@ -17,16 +17,6 @@ public class MyData {
 	public MyData() {
 	}
 	
-	public MyData(int height, int weight, String name,int lifeArmor) {
-		// TODO 自動生成されたコンストラクター・スタブ
-		this.height = height;
-		this.weight = weight;
-		this.name = name;
-		
-		this.bestWeight = (height/100) * (height/100) * 22;
-		this.setBurnCal((float) (weight * lifeArmor)); 
-		this.setStepwidth(height * 0.45f);
-	}
 	
 	public int getHeight() {
 		return height;
@@ -80,7 +70,7 @@ public class MyData {
 		return burnCal;
 	}
 
-	public void setBurnCal(Float burnCal) {
-		this.burnCal = burnCal;
+	public void setBurnCal(int lifeArmor, int weight) {
+		this.burnCal = (float) (lifeArmor * weight);
 	}
 }

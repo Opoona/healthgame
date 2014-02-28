@@ -62,7 +62,7 @@ public class HomeActivity extends FragmentActivity implements SensorEventListene
 		myData.setWeight(weight);
 		myData.setName(name);
 		myData.setLifeArmor(lifeArmor);
-		myData.setBurnCal(weight);
+		myData.setBurnCal(weight, lifeArmor);
 		int weiGht = myData.getWeight();
 		Float stepwidth = myData.getStepwidth();
 		
