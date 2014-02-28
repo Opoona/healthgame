@@ -44,5 +44,11 @@
             android:layout_height="wrap_content"
             android:text="kCal"/>
     </LinearLayout>
+    
+    <com.echo.holographlibrary.LineGraph
+    	android:layout_width="wrap_content"
+    	android:layout_height="300dp"
+    	android:id="@+id/graph"/>
+
 
 </LinearLayout>

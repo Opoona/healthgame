@@ -6,9 +6,11 @@ public class MyData {
 	private int height; //身長
 	private int weight; //体重
 	private String name; //名前
-	private int burnCal; //消費すべきカロリー
+	private Float burnCal; //消費すべきカロリー
+	private Float burnedCal;//消費カロリー
 	private int bestWeight; //標準体重
 	private float stepwidth; //歩幅
+	private int lifeArmor;
 	
 	
 
@@ -22,7 +24,7 @@ public class MyData {
 		this.name = name;
 		
 		this.bestWeight = (height/100) * (height/100) * 22;
-		this.burnCal = weight * lifeArmor; 
+		this.setBurnCal((float) (weight * lifeArmor)); 
 		this.setStepwidth(height * 0.45f);
 	}
 	
@@ -55,5 +57,30 @@ public class MyData {
 
 	public void setStepwidth(float stepwidth) {
 		this.stepwidth = stepwidth;
+	}
+
+	public Float getBurnedCal() {
+		return burnedCal;
+	}
+
+	public void setBurnedCal(int step) {
+		this.burnedCal = (step * this.stepwidth * this.weight)/10000;
+		
+	}
+
+	public int getLifeArmor() {
+		return lifeArmor;
+	}
+
+	public void setLifeArmor(int lifeArmor) {
+		this.lifeArmor = lifeArmor;
+	}
+
+	public Float getBurnCal() {
+		return burnCal;
+	}
+
+	public void setBurnCal(Float burnCal) {
+		this.burnCal = burnCal;
 	}
 }
